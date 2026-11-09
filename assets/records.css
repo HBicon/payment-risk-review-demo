@@ -155,7 +155,7 @@
   align-items: center;
   gap: 5px;
   padding: 0;
-  color: #869a92;
+  color: #60786f;
   background: transparent;
   border: 0;
   font-size: 9px;
@@ -207,7 +207,7 @@
 .records-search:focus-within { background: #fff; border-color: #b9dacf; box-shadow: 0 0 0 3px rgba(32, 160, 129, 0.05); }
 .records-search .icon-slot { font-size: 12px; }
 .records-search input { width: 100%; padding: 0; background: transparent; border: 0; outline: 0; font-size: 8.5px; }
-.records-search input::placeholder { color: #a0afa9; }
+.records-search input::placeholder { color: #5d736a; }
 
 .records-filter-button {
   display: grid;
@@ -269,22 +269,22 @@
 .record-status-dot.is-approved { background: #29ac88; box-shadow: 0 0 0 3px rgba(41, 172, 136, 0.09); }
 .record-status-dot.is-rejected { background: #c67566; box-shadow: 0 0 0 3px rgba(198, 117, 102, 0.08); }
 .record-case-line strong { overflow: hidden; color: #355249; font-family: var(--font-mono); font-size: 8px; font-weight: 600; text-overflow: ellipsis; white-space: nowrap; }
-.record-order { display: block; overflow: hidden; margin-top: 4px; color: #93a59e; font-family: var(--font-mono); font-size: 7px; text-overflow: ellipsis; white-space: nowrap; }
+.record-order { display: block; overflow: hidden; margin-top: 4px; color: #627a71; font-family: var(--font-mono); font-size: 7px; text-overflow: ellipsis; white-space: nowrap; }
 
 .record-verdict-cell { min-width: 0; }
 .record-result-badge { display: inline-flex; align-items: center; gap: 3px; padding: 2px 5px; border-radius: 4px; font-size: 7px; font-weight: 600; }
-.record-result-badge.is-approved { color: #148068; background: #eaf8f2; border: 1px solid #d8eee5; }
+.record-result-badge.is-approved { color: #0f6e58; background: #eaf8f2; border: 1px solid #d8eee5; }
 .record-result-badge.is-rejected { color: #a6584b; background: #fff2ef; border: 1px solid #f2dfda; }
 .record-result-badge .icon-slot { font-size: 8px; }
-.record-reason { display: block; overflow: hidden; margin-top: 4px; color: #7d9289; font-size: 7.5px; text-overflow: ellipsis; white-space: nowrap; }
+.record-reason { display: block; overflow: hidden; margin-top: 4px; color: #5d736a; font-size: 7.5px; text-overflow: ellipsis; white-space: nowrap; }
 
 .record-amount-cell strong { display: block; color: #263f37; font-family: "DIN Alternate", var(--font-sans); font-size: 13px; font-weight: 700; letter-spacing: -0.015em; }
-.record-amount-cell span { display: block; margin-top: 3px; color: #93a59e; font-size: 7px; }
+.record-amount-cell span { display: block; margin-top: 3px; color: #627a71; font-size: 7px; }
 
 .record-reviewer-cell { display: flex; min-width: 0; align-items: center; gap: 6px; color: #5c756c; font-size: 7.5px; }
 .record-reviewer-avatar { display: grid; width: 20px; height: 20px; flex: 0 0 auto; place-items: center; color: #eafff8; background: #397060; border-radius: 6px; font-size: 7px; }
 .record-time-cell strong { display: block; color: #617a71; font-family: var(--font-mono); font-size: 7px; font-weight: 500; white-space: nowrap; }
-.record-time-cell span { display: block; margin-top: 3px; color: #9aaba5; font-size: 7px; }
+.record-time-cell span { display: block; margin-top: 3px; color: #5d736a; font-size: 7px; }
 .record-action-cell { color: #a0b1aa; text-align: right; }
 .record-action-cell .icon-slot { font-size: 11px; margin-left: auto; }
 .records-table tr:hover .record-action-cell { color: #1b8a70; }
