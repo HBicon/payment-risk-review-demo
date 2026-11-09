@@ -144,7 +144,7 @@
   });
 
   document.getElementById('returnOrder').addEventListener('click', () => {
-    window.location.href = 'index.html';
+    window.location.href = 'payment.html';
   });
 
   document.getElementById('helpSupport').addEventListener('click', () => {

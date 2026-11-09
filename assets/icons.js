@@ -1,6 +1,7 @@
 (function () {
   const paths = {
     'arrow-left': '<path d="M15 18l-6-6 6-6"/><path d="M9 12h12"/>',
+    'arrow-right': '<path d="M9 6l6 6-6 6"/><path d="M3 12h12"/>',
     'chevron-right': '<path d="M9 18l6-6-6-6"/>',
     'chevron-down': '<path d="M6 9l6 6 6-6"/>',
     'shield': '<path d="M12 3l7 3v5.8c0 4.5-2.9 8.1-7 9.2-4.1-1.1-7-4.7-7-9.2V6l7-3z"/>',
@@ -44,6 +45,7 @@
     'activity': '<path d="M3 12h4l2.2-6 4.2 12 2.3-6H21"/>',
     'copy': '<rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V5a1 1 0 00-1-1H5a1 1 0 00-1 1v10a1 1 0 001 1h3"/>',
     'shield-lock': '<path d="M12 3l7 3v5.8c0 4.5-2.9 8.1-7 9.2-4.1-1.1-7-4.7-7-9.2V6l7-3z"/><rect x="9" y="10" width="6" height="5.5" rx="1.3"/><path d="M10.5 10V8.7a1.5 1.5 0 013 0V10"/>'
+    ,'play': '<path d="M8 5.5v13l10-6.5L8 5.5z"/>'
   };
 
   const iconAliases = {
