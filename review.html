@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b2b26">
+  <title>人工审核台 · 收款风控</title>
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body class="admin-page">
+  <div class="admin-shell">
+    <aside class="admin-sidebar">
+      <a class="admin-brand" href="review.html" aria-label="收款风控审核台首页">
+        <span class="brand-symbol" data-icon="shield-check"></span>
+        <span class="brand-copy">
+          <strong>收款风控</strong>
+          <small>TRUST REVIEW</small>
+        </span>
+      </a>
+
+      <div class="port-badge">
+        <span class="port-live-dot"></span>
+        独立审核端口
+      </div>
+
+      <nav class="side-nav" aria-label="主导航">
+        <p class="side-label">审核工作台</p>
+        <button class="side-link is-active" type="button" data-nav="review">
+          <span class="side-link-icon" data-icon="inbox"></span>
+          <span>人工审核</span>
+          <span class="side-count" id="sidePendingCount">0</span>
+        </button>
+        <button class="side-link" type="button" data-nav="risk">
+          <span class="side-link-icon" data-icon="alert-triangle"></span>
+          <span>风险订单</span>
+          <span class="nav-dot"></span>
+        </button>
+        <button class="side-link" type="button" data-nav="records">
+          <span class="side-link-icon" data-icon="history"></span>
+          <span>审核记录</span>
+        </button>
+
+        <p class="side-label side-label--spaced">策略与管理</p>
+        <button class="side-link" type="button" data-nav="rules">
+          <span class="side-link-icon" data-icon="sliders"></span>
+          <span>风控规则</span>
+        </button>
+        <button class="side-link" type="button" data-nav="team">
+          <span class="side-link-icon" data-icon="users"></span>
+          <span>审核团队</span>
+        </button>
+      </nav>
+
+      <div class="side-quality">
+        <div class="quality-head">
+          <span>今日审核质量</span>
+          <span data-icon="activity"></span>
+        </div>
+        <strong>98.6<small>%</small></strong>
+        <div class="quality-bars" aria-hidden="true">
+          <span style="height: 32%"></span><span style="height: 53%"></span><span style="height: 44%"></span><span style="height: 69%"></span><span style="height: 58%"></span><span style="height: 78%"></span><span style="height: 92%"></span>
+        </div>
+        <p>较昨日提升 <span>0.8%</span></p>
+      </div>
+
+      <div class="sidebar-user">
+        <span class="reviewer-avatar">林</span>
+        <div>
+          <strong>林清</strong>
+          <span>高级风控审核员</span>
+        </div>
+        <button class="side-more" type="button" aria-label="更多账户选项" data-icon="more"></button>
+      </div>
+    </aside>
+
+    <div class="admin-workspace">
+      <header class="admin-topbar">
+        <div class="topbar-environment">
+          <span class="environment-dot"></span>
+          <span class="env-label">独立审核端口</span>
+          <span class="environment-divider">/</span>
+          <span class="env-extra">内网安全连接</span>
+        </div>
+        <div class="topbar-actions">
+          <label class="global-search">
+            <span data-icon="search"></span>
+            <input id="globalSearch" type="search" placeholder="搜索订单号 / 审核单号" autocomplete="off">
+            <kbd>⌘ K</kbd>
+          </label>
+          <button class="apply-new-case" id="newSubmittedCase" type="button" title="模拟用户从支付页提交资料">
+            <span data-icon="upload"></span>
+            <span class="utility-label">模拟新提交</span>
+          </button>
+          <button class="topbar-icon" id="notificationButton" type="button" aria-label="审核通知">
+            <span data-icon="bell"></span>
+            <i class="notification-dot"></i>
+          </button>
+          <span class="topbar-online"><i></i>审核在线</span>
+        </div>
+      </header>
+
+      <main class="admin-content">
+        <section class="admin-heading">
+          <div class="admin-heading-copy">
+            <p class="admin-eyebrow">MANUAL REVIEW · REAL-TIME QUEUE</p>
+            <h1>人工审核台</h1>
+            <p>核对本机照片与 IMEI 信息，审核通过后立即执行付款；驳回将终止本次支付流程。</p>
+          </div>
+          <div class="admin-metrics">
+            <article class="admin-metric">
+              <span class="metric-icon metric-icon--amber" data-icon="clock"></span>
+              <div><span>待审核</span><strong id="metricPending">0<small>笔</small></strong></div>
+            </article>
+            <article class="admin-metric">
+              <span class="metric-icon metric-icon--mint" data-icon="activity"></span>
+              <div><span>平均处理时长</span><strong>4m 32s</strong></div>
+            </article>
+            <article class="admin-metric">
+              <span class="metric-icon metric-icon--ink" data-icon="shield-check"></span>
+              <div><span>今日通过率</span><strong>91.8<small>%</small></strong></div>
+            </article>
+          </div>
+        </section>
+
+        <section class="review-workbench" aria-label="人工审核工作区">
+          <aside class="queue-panel">
+            <header class="queue-header">
+              <div>
+                <div class="queue-title-line">
+                  <h2>审核队列</h2>
+                  <span class="live-tag"><i></i>实时</span>
+                </div>
+                <p>优先展示高风险与等待较久的订单</p>
+              </div>
+              <button class="queue-refresh" id="refreshQueue" type="button" aria-label="刷新审核队列">
+                <span data-icon="refresh"></span>
+              </button>
+            </header>
+
+            <div class="queue-tabs" role="tablist" aria-label="按审核状态筛选">
+              <button class="queue-tab is-active" type="button" role="tab" aria-selected="true" data-filter="pending">
+                待审核 <span id="pendingTabCount">0</span>
+              </button>
+              <button class="queue-tab" type="button" role="tab" aria-selected="false" data-filter="approved">
+                已通过 <span id="approvedTabCount">0</span>
+              </button>
+              <button class="queue-tab" type="button" role="tab" aria-selected="false" data-filter="rejected">
+                已驳回 <span id="rejectedTabCount">0</span>
+              </button>
+            </div>
+
+            <label class="queue-search">
+              <span data-icon="search"></span>
+              <input id="queueSearch" type="search" placeholder="搜索队列" autocomplete="off">
+            </label>
+
+            <div class="queue-list" id="queueList" role="list" aria-live="polite"></div>
+
+            <footer class="queue-footer">
+              <span><i></i>队列状态已同步</span>
+              <button type="button" id="queueHelp">快捷键 <kbd>?</kbd></button>
+            </footer>
+          </aside>
+
+          <section class="case-panel" id="casePanel" aria-label="审核详情" aria-live="polite">
+            <div class="case-loading">
+              <span class="spinner"></span>
+              正在载入审核资料…
+            </div>
+          </section>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <dialog class="admin-dialog" id="decisionDialog" aria-labelledby="decisionDialogTitle">
+    <div class="admin-dialog-body">
+      <div class="dialog-icon" id="decisionDialogIcon"><span data-icon="check"></span></div>
+      <p class="dialog-eyebrow" id="decisionDialogEyebrow">APPROVE &amp; PAY</p>
+      <h2 id="decisionDialogTitle">确认审核通过？</h2>
+      <p class="dialog-lead" id="decisionDialogLead">通过后将立即执行付款，此操作无法撤销。</p>
+      <div class="dialog-order-summary">
+        <div><span>订单号</span><strong id="dialogOrderNo">TCB2026110949852</strong></div>
+        <div><span>支付金额</span><strong id="dialogAmount">¥1,683.00</strong></div>
+      </div>
+      <div class="dialog-reason is-hidden" id="dialogRejectReason">
+        <span>驳回原因</span>
+        <strong>—</strong>
+      </div>
+      <label class="dialog-field">
+        <span>审核备注 <em>选填</em></span>
+        <textarea id="reviewerNote" rows="3" placeholder="补充说明审核判断，仅内部可见"></textarea>
+      </label>
+      <div class="admin-dialog-actions">
+        <button class="admin-btn admin-btn--secondary" type="button" id="cancelDecision">取消</button>
+        <button class="admin-btn admin-btn--primary" type="button" id="confirmDecision">确认通过并付款</button>
+      </div>
+    </div>
+  </dialog>
+
+  <dialog class="image-dialog" id="imageDialog" aria-labelledby="imageDialogTitle">
+    <header class="image-dialog-header">
+      <div>
+        <p>EVIDENCE ORIGINAL</p>
+        <h2 id="imageDialogTitle">本机图片</h2>
+      </div>
+      <div class="image-dialog-tools">
+        <span id="imageDimensions">原始画质 · 已加密</span>
+        <button type="button" id="closeImageDialog" aria-label="关闭原图">
+          <span data-icon="x"></span>
+        </button>
+      </div>
+    </header>
+    <div class="image-dialog-stage">
+      <img id="imageDialogImage" alt="核验资料原图">
+    </div>
+    <footer class="image-dialog-footer">
+      <div><i></i>审核资料仅限本次核验使用，请勿截屏外传</div>
+      <button type="button" id="approveFromImage">通过并付款</button>
+    </footer>
+  </dialog>
+
+  <div class="admin-toast" id="adminToast" role="status" aria-live="polite"></div>
+
+  <script src="assets/icons.js"></script>
+  <script src="assets/store.js"></script>
+  <script src="assets/admin.js"></script>
+</body>
+</html>

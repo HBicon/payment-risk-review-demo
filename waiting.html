@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f4f9f6">
+  <title>人工审核中 · 收款风控</title>
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body class="flow-page">
+  <header class="flow-topbar">
+    <div class="flow-topbar-inner">
+      <a class="flow-back" href="index.html" aria-label="返回支付页">
+        <span data-icon="arrow-left"></span>
+      </a>
+      <div class="flow-title">
+        <span>PAYMENT VERIFICATION</span>
+        <h1>支付安全核验</h1>
+      </div>
+      <span class="secure-pill">
+        <span data-icon="refresh"></span>
+        实时同步
+      </span>
+    </div>
+  </header>
+
+  <main class="wait-main">
+    <section class="wait-card" id="pendingView" aria-labelledby="pendingTitle">
+      <div class="wait-hero">
+        <div class="status-visual" aria-hidden="true">
+          <span data-icon="clock"></span>
+          <span class="status-dot"></span>
+        </div>
+        <p class="status-kicker">人工审核中</p>
+        <h1 id="pendingTitle">资料已提交，<br>正在核验本机信息</h1>
+        <p class="wait-lead">审核员正在比对两张照片。结果将实时同步到本页面，并通过服务通知提醒你。</p>
+        <div class="review-live">
+          <span class="live-dot"></span>
+          审核进行中 · 已等待 <strong id="elapsedTime">00:28</strong>
+        </div>
+      </div>
+
+      <div class="wait-body">
+        <div class="review-timeline" aria-label="审核进度">
+          <div class="timeline-item is-done">
+            <span class="timeline-dot" data-icon="check"></span>
+            <div class="timeline-copy">
+              <h3>资料提交成功</h3>
+              <p>本机图片与 IMEI 图片已加密上传</p>
+            </div>
+            <span class="timeline-status">已完成</span>
+          </div>
+          <div class="timeline-item is-active">
+            <span class="timeline-dot"></span>
+            <div class="timeline-copy">
+              <h3>人工审核中</h3>
+              <p>预计 10 分钟内完成，请保持页面打开</p>
+            </div>
+            <span class="timeline-status">进行中</span>
+          </div>
+          <div class="timeline-item">
+            <span class="timeline-dot">3</span>
+            <div class="timeline-copy">
+              <h3>审核通过后自动付款</h3>
+              <p>无需重复操作，付款结果将同步展示</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="order-receipt">
+          <div class="order-receipt-head">
+            <div>
+              <span class="receipt-label">订单号</span>
+              <strong id="orderNumber">TCB2026110949852</strong>
+            </div>
+            <div class="receipt-amount"><span>¥</span><span id="orderAmount">1,683.00</span></div>
+          </div>
+          <dl class="order-receipt-meta">
+            <div><dt>收款方</dt><dd>云帆数码旗舰店</dd></div>
+            <div><dt>提交时间</dt><dd id="submittedAt">11-09 20:18</dd></div>
+            <div><dt>审核单号</dt><dd class="mono" id="caseId">RC-20261109-0521</dd></div>
+          </dl>
+        </div>
+
+        <div class="wait-actions">
+          <button class="btn btn-secondary" id="returnOrder" type="button">返回订单</button>
+          <button class="btn btn-primary" id="refreshStatus" type="button">
+            <span data-icon="refresh"></span>
+            刷新审核状态
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section class="wait-card is-hidden" id="approvedView" aria-labelledby="approvedTitle">
+      <div class="wait-hero">
+        <div class="status-visual is-success" aria-hidden="true">
+          <span data-icon="check"></span>
+        </div>
+        <p class="status-kicker">审核已通过</p>
+        <h1 id="approvedTitle">资料核验通过，<br>支付已完成</h1>
+        <p class="wait-lead">本笔订单已通过人工审核，付款已自动执行。你可以返回订单查看结果。</p>
+        <span class="result-badge">
+          <span data-icon="check-circle"></span>
+          人工审核通过 · 已付款
+        </span>
+      </div>
+      <div class="wait-body result-summary">
+        <div class="result-amount"><span>¥</span><span id="approvedAmount">1,683.00</span><small id="approvedOrder">订单 TCB2026110949852</small></div>
+        <div class="order-receipt">
+          <dl class="order-receipt-meta" style="padding-top: 0;">
+            <div><dt>付款状态</dt><dd style="color: #13846d; font-weight: 650;">支付成功</dd></div>
+            <div><dt>审核时间</dt><dd id="approvedTime">11-09 20:26</dd></div>
+            <div><dt>审核结论</dt><dd id="approvedReason">资料一致，审核通过</dd></div>
+            <div><dt>审核员</dt><dd id="approvedReviewer">林清 · 风控组</dd></div>
+          </dl>
+        </div>
+        <div class="wait-actions">
+          <button class="btn btn-secondary" id="approvedReceipt" type="button">查看付款回单</button>
+          <a class="btn btn-primary" href="index.html">返回订单</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="wait-card is-hidden" id="rejectedView" aria-labelledby="rejectedTitle">
+      <div class="wait-hero">
+        <div class="status-visual is-danger" aria-hidden="true">
+          <span data-icon="x"></span>
+        </div>
+        <p class="status-kicker is-danger">人工审核未通过</p>
+        <h1 id="rejectedTitle">本次资料审核未通过</h1>
+        <p class="wait-lead">审核员无法通过当前资料确认本机信息。本次支付流程已终止，你可以重新上传资料发起新的核验。</p>
+        <span class="result-badge is-danger">
+          <span data-icon="alert-circle"></span>
+          支付已终止
+        </span>
+      </div>
+      <div class="wait-body">
+        <div class="reject-reason">
+          <span>驳回原因</span>
+          <strong id="rejectedReason">IMEI 信息不完整</strong>
+          <p id="rejectedNote">图片中的 IMEI 后半段被遮挡，无法完成信息比对。</p>
+        </div>
+        <div class="terminal-note">
+          <span data-icon="info"></span>
+          为了保护资金安全，原审核单已关闭，本次支付流程不会再继续。重新上传将生成一条新的审核记录。
+        </div>
+        <div class="order-receipt" style="margin-top: 11px;">
+          <div class="order-receipt-head">
+            <div>
+              <span class="receipt-label">原订单号</span>
+              <strong id="rejectedOrder">TCB2026110949852</strong>
+            </div>
+            <div class="receipt-amount"><span>¥</span><span id="rejectedAmount">1,683.00</span></div>
+          </div>
+          <dl class="order-receipt-meta">
+            <div><dt>审核单号</dt><dd class="mono" id="rejectedCaseId">RC-20261109-0521</dd></div>
+            <div><dt>审核时间</dt><dd id="rejectedTime">11-09 20:26</dd></div>
+            <div><dt>审核员</dt><dd id="rejectedReviewer">林清 · 风控组</dd></div>
+          </dl>
+        </div>
+        <div class="wait-actions">
+          <a class="btn btn-secondary" href="index.html">返回订单</a>
+          <a class="btn btn-primary" id="reuploadButton" href="upload.html?restart=1">
+            <span data-icon="upload"></span>
+            重新上传资料
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <aside class="help-strip">
+      <span class="help-icon" data-icon="headset"></span>
+      <div>
+        <strong>审核遇到问题？</strong>
+        <p>在线客服可协助确认资料要求</p>
+      </div>
+      <button type="button" id="helpSupport">联系客服</button>
+    </aside>
+  </main>
+
+  <dialog class="media-dialog" id="receiptDialog" aria-labelledby="receiptTitle">
+    <div class="media-dialog-content">
+      <div class="media-dialog-head">
+        <div>
+          <span>PAYMENT RECEIPT</span>
+          <h2 id="receiptTitle">付款回单</h2>
+        </div>
+        <button class="dialog-close" type="button" id="closeReceiptDialog" aria-label="关闭回单" style="position: static;">
+          <span data-icon="x"></span>
+        </button>
+      </div>
+      <div class="order-receipt" style="margin-top: 0;">
+        <div class="order-receipt-head">
+          <div>
+            <span class="receipt-label">支付成功</span>
+            <strong id="receiptOrderNo">TCB2026110949852</strong>
+          </div>
+          <div class="receipt-amount"><span>¥</span><span id="receiptAmount">1,683.00</span></div>
+        </div>
+        <dl class="order-receipt-meta">
+          <div><dt>收款方</dt><dd>云帆数码旗舰店</dd></div>
+          <div><dt>支付方式</dt><dd>微信支付</dd></div>
+          <div><dt>交易时间</dt><dd id="receiptPaidAt">11-09 20:26</dd></div>
+          <div><dt>审核单号</dt><dd class="mono" id="receiptCaseId">RC-20261109-0521</dd></div>
+        </dl>
+      </div>
+      <button class="btn btn-primary" type="button" id="closeReceiptButton">完成</button>
+    </div>
+  </dialog>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="assets/icons.js"></script>
+  <script src="assets/store.js"></script>
+  <script src="assets/waiting.js"></script>
+</body>
+</html>

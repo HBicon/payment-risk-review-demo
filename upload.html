@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f4f9f6">
+  <title>重新上传核验资料 · 收款风控</title>
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body class="flow-page">
+  <header class="flow-topbar">
+    <div class="flow-topbar-inner">
+      <a class="flow-back" href="index.html" aria-label="返回支付页">
+        <span data-icon="arrow-left"></span>
+      </a>
+      <div class="flow-title">
+        <span>PAYMENT VERIFICATION</span>
+        <h1>支付安全核验</h1>
+      </div>
+      <span class="secure-pill">
+        <span data-icon="lock"></span>
+        加密传输
+      </span>
+    </div>
+  </header>
+
+  <main class="flow-main">
+    <section class="flow-alert" aria-labelledby="riskAlertTitle">
+      <div class="alert-mark"><span data-icon="shield-alert"></span></div>
+      <div class="alert-copy">
+        <p class="alert-eyebrow">整体风控命中</p>
+        <h2 id="riskAlertTitle">需重新核验本机信息</h2>
+        <p>系统未能通过本笔交易的资料校验。请重新上传本机图片和 IMEI 图片，提交后由审核员人工确认。</p>
+      </div>
+      <span class="alert-case-id" id="caseNumber">SECURE CASE · 0521</span>
+    </section>
+
+    <div class="flow-progress" aria-label="核验进度">
+      <div class="progress-step is-active" aria-current="step">
+        <span class="progress-dot">01</span>
+        <span>上传资料</span>
+      </div>
+      <div class="progress-step">
+        <span class="progress-dot">02</span>
+        <span>人工审核</span>
+      </div>
+      <div class="progress-step">
+        <span class="progress-dot">03</span>
+        <span>完成付款</span>
+      </div>
+    </div>
+
+    <div class="flow-section-intro">
+      <div>
+        <h2>重新上传资料</h2>
+        <p>两张照片均需清晰、完整，且来自同一部本机。</p>
+      </div>
+      <span class="step-count">2 REQUIRED FILES</span>
+    </div>
+
+    <form id="evidenceForm" novalidate>
+      <section class="upload-card" aria-labelledby="deviceUploadTitle">
+        <header class="upload-card-head">
+          <span class="upload-index">01</span>
+          <div class="upload-head-copy">
+            <div class="upload-title-line">
+              <h3 id="deviceUploadTitle">本机图片</h3>
+              <span class="required-pill">必传</span>
+            </div>
+            <p>请拍摄手机正面，完整露出机身边缘，并保持屏幕点亮。</p>
+          </div>
+          <button class="example-link" type="button" data-example="device">
+            查看示例
+            <span data-icon="chevron-right"></span>
+          </button>
+        </header>
+
+        <div class="upload-grid">
+          <div>
+            <div class="upload-drop" id="deviceZone" data-upload-kind="device" role="button" tabindex="0" aria-label="上传本机图片">
+              <input class="sr-only" id="deviceInput" type="file" accept="image/jpeg,image/png,image/webp" capture="environment">
+              <div class="drop-empty">
+                <span class="drop-icon" data-icon="camera"></span>
+                <strong>拍照或选择图片</strong>
+                <span>请上传清晰原图，单张不超过 10MB</span>
+                <span class="drop-browse">选择本机照片</span>
+              </div>
+              <div class="drop-preview" id="devicePreview" hidden>
+                <img id="devicePreviewImage" alt="已选择的本机图片预览">
+                <div class="preview-caption">
+                  <span id="deviceFileName">本机图片.jpg</span>
+                  <em>点击更换</em>
+                </div>
+              </div>
+              <button class="remove-image" id="deviceRemove" type="button" hidden aria-label="移除本机图片">
+                <span data-icon="x"></span>
+              </button>
+            </div>
+            <p class="upload-note">
+              <span data-icon="info"></span>
+              建议在光线充足处拍摄，避免反光和裁切。
+            </p>
+            <p class="upload-error" id="deviceError" hidden></p>
+          </div>
+
+          <aside class="example-panel" aria-label="本机图片拍摄要求">
+            <div class="example-photo">
+              <img src="assets/device-evidence.svg" alt="本机图片示例：手机正面完整入镜">
+              <span>正确示例</span>
+            </div>
+            <div class="example-notes">
+              <h4>拍摄要点</h4>
+              <ul>
+                <li>手机正面完整入镜</li>
+                <li>屏幕点亮且无遮挡</li>
+                <li>照片清晰，无严重反光</li>
+              </ul>
+            </div>
+          </aside>
+        </div>
+
+        <details class="photo-tips">
+          <summary>常见不通过原因 <span data-icon="chevron-down"></span></summary>
+          <div class="tips-body">
+            <span>只拍摄了屏幕，未露出完整机身。</span>
+            <span>图片过度压缩、模糊，无法辨认设备特征。</span>
+            <span>照片由相册旧图代替，画面信息与本机不一致。</span>
+          </div>
+        </details>
+      </section>
+
+      <section class="upload-card" aria-labelledby="imeiUploadTitle">
+        <header class="upload-card-head">
+          <span class="upload-index">02</span>
+          <div class="upload-head-copy">
+            <div class="upload-title-line">
+              <h3 id="imeiUploadTitle">IMEI 图片</h3>
+              <span class="required-pill">必传</span>
+            </div>
+            <p>请在拨号界面输入 <strong>*#06#</strong>，或前往“设置 &gt; 关于手机”，拍下完整 IMEI 信息。</p>
+          </div>
+          <button class="example-link" type="button" data-example="imei">
+            查看示例
+            <span data-icon="chevron-right"></span>
+          </button>
+        </header>
+
+        <div class="upload-grid">
+          <div>
+            <div class="upload-drop" id="imeiZone" data-upload-kind="imei" role="button" tabindex="0" aria-label="上传 IMEI 图片">
+              <input class="sr-only" id="imeiInput" type="file" accept="image/jpeg,image/png,image/webp">
+              <div class="drop-empty">
+                <span class="drop-icon" data-icon="smartphone"></span>
+                <strong>拍照或上传截图</strong>
+                <span>需完整显示 IMEI 1 或 IMEI 2 号段</span>
+                <span class="drop-browse">选择 IMEI 图片</span>
+              </div>
+              <div class="drop-preview" id="imeiPreview" hidden>
+                <img id="imeiPreviewImage" alt="已选择的 IMEI 图片预览">
+                <div class="preview-caption">
+                  <span id="imeiFileName">IMEI 图片.jpg</span>
+                  <em>点击更换</em>
+                </div>
+              </div>
+              <button class="remove-image" id="imeiRemove" type="button" hidden aria-label="移除 IMEI 图片">
+                <span data-icon="x"></span>
+              </button>
+            </div>
+            <p class="upload-note">
+              <span data-icon="shield-check"></span>
+              请确保号码清晰可见，审核员不会外泄你的信息。
+            </p>
+            <p class="upload-error" id="imeiError" hidden></p>
+          </div>
+
+          <aside class="example-panel" aria-label="IMEI 图片拍摄要求">
+            <div class="example-photo">
+              <img src="assets/imei-evidence.svg" alt="IMEI 图片示例：IMEI 号段完整清晰">
+              <span>正确示例</span>
+            </div>
+            <div class="example-notes">
+              <h4>拍摄要点</h4>
+              <ul>
+                <li>IMEI 号段完整显示</li>
+                <li>数字清晰、不反光</li>
+                <li>不要遮挡或涂抹号码</li>
+              </ul>
+            </div>
+          </aside>
+        </div>
+
+        <details class="photo-tips">
+          <summary>如何找到 IMEI？ <span data-icon="chevron-down"></span></summary>
+          <div class="tips-body">
+            <span>打开电话拨号界面，输入 *#06#，即可显示设备 IMEI。</span>
+            <span>Android：设置 &gt; 关于手机 &gt; IMEI 信息。</span>
+            <span>请使用本机拍摄或截屏，不要使用网络图片。</span>
+          </div>
+        </details>
+      </section>
+
+      <label class="consent-row">
+        <input id="consentCheckbox" type="checkbox">
+        <span>我已阅读并同意将上述资料用于本次交易安全核验。资料由人工审核，仅用于本次订单，不会用于营销。 <a href="#" id="privacyLink">《个人信息核验授权》</a></span>
+      </label>
+
+      <p class="flow-footer-note">提交后资料将加密传输至独立审核端口，预计 10 分钟内完成审核。</p>
+    </form>
+  </main>
+
+  <div class="submit-dock">
+    <div class="dock-note">
+      <span><span data-icon="lock"></span> 资料加密传输</span>
+      <strong>预计 10 分钟内完成审核</strong>
+    </div>
+    <button class="btn btn-primary" id="submitButton" type="button" form="evidenceForm" disabled>
+      <span data-icon="shield-check"></span>
+      <span id="submitLabel">提交人工审核</span>
+    </button>
+  </div>
+
+  <dialog class="media-dialog" id="exampleDialog" aria-labelledby="exampleDialogTitle">
+    <div class="media-dialog-content">
+      <div class="media-dialog-head">
+        <div>
+          <span>UPLOAD EXAMPLE</span>
+          <h2 id="exampleDialogTitle">本机图片示例</h2>
+        </div>
+        <button class="dialog-close" type="button" id="closeExampleDialog" aria-label="关闭示例" style="position: static;">
+          <span data-icon="x"></span>
+        </button>
+      </div>
+      <div class="media-dialog-image">
+        <img id="exampleDialogImage" alt="核验资料示例">
+      </div>
+      <div class="media-dialog-caption">
+        <h3 id="exampleDialogCaption">手机正面完整入镜，屏幕点亮</h3>
+        <ul id="exampleDialogTips"></ul>
+      </div>
+      <button class="btn btn-primary" type="button" id="closeExampleButton">我知道了</button>
+    </div>
+  </dialog>
+
+  <script src="assets/icons.js"></script>
+  <script src="assets/store.js"></script>
+  <script src="assets/upload.js"></script>
+</body>
+</html>

