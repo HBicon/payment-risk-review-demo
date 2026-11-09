@@ -3,227 +3,158 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#0b2b26">
-  <title>人工审核台 · 收款风控</title>
-  <link rel="stylesheet" href="assets/styles.css">
+  <meta name="theme-color" content="#082f27">
+  <title>审核中心 · 收款风控独立审核端口</title>
+  <link rel="stylesheet" href="assets/review-home.css">
 </head>
-<body class="admin-page">
-  <div class="admin-shell">
-    <aside class="admin-sidebar">
-      <a class="admin-brand" href="index.html" aria-label="返回收款风控演示入口">
-        <span class="brand-symbol" data-icon="shield-check"></span>
-        <span class="brand-copy">
-          <strong>收款风控</strong>
-          <small>TRUST REVIEW</small>
-        </span>
-      </a>
+<body class="review-home">
+  <div class="rh-ambient rh-ambient--a" aria-hidden="true"></div>
+  <div class="rh-ambient rh-ambient--b" aria-hidden="true"></div>
 
-      <div class="port-badge">
-        <span class="port-live-dot"></span>
-        独立审核端口
+  <header class="rh-nav">
+    <a class="rh-brand" href="review.html" aria-label="审核中心首页">
+      <span class="rh-brand-mark" data-icon="shield-check"></span>
+      <span class="rh-brand-copy">
+        <strong>收款风控</strong>
+        <small>INDEPENDENT REVIEW PORT</small>
+      </span>
+    </a>
+    <div class="rh-nav-right">
+      <span class="rh-online"><i></i>审核端口在线</span>
+      <a class="rh-back" href="index.html"><span data-icon="arrow-left"></span>返回演示入口</a>
+    </div>
+  </header>
+
+  <main class="rh-main">
+    <section class="rh-hero">
+      <div class="rh-hero-copy">
+        <p class="rh-eyebrow"><span></span>REVIEW OPERATIONS CENTER</p>
+        <h1>审核中心</h1>
+        <p class="rh-lead">独立的审核工作入口。先选择本次任务，再进入对应的审核队列或历史记录路径。</p>
+        <div class="rh-identity">
+          <span class="rh-avatar">林</span>
+          <div><strong>林清</strong><span>高级风控审核员 · 当前在线</span></div>
+          <span class="rh-shift">早班 09:00–18:00</span>
+        </div>
       </div>
 
-      <nav class="side-nav" aria-label="主导航">
-        <p class="side-label">审核工作台</p>
-        <button class="side-link is-active" type="button" data-nav="review">
-          <span class="side-link-icon" data-icon="inbox"></span>
-          <span>人工审核</span>
-          <span class="side-count" id="sidePendingCount">0</span>
-        </button>
-        <button class="side-link" type="button" data-nav="risk">
-          <span class="side-link-icon" data-icon="alert-triangle"></span>
-          <span>风险订单</span>
-          <span class="nav-dot"></span>
-        </button>
-        <button class="side-link" type="button" data-nav="records">
-          <span class="side-link-icon" data-icon="history"></span>
-          <span>审核记录</span>
-        </button>
-
-        <p class="side-label side-label--spaced">策略与管理</p>
-        <button class="side-link" type="button" data-nav="rules">
-          <span class="side-link-icon" data-icon="sliders"></span>
-          <span>风控规则</span>
-        </button>
-        <button class="side-link" type="button" data-nav="team">
-          <span class="side-link-icon" data-icon="users"></span>
-          <span>审核团队</span>
-        </button>
-      </nav>
-
-      <div class="side-quality">
-        <div class="quality-head">
-          <span>今日审核质量</span>
-          <span data-icon="activity"></span>
+      <aside class="rh-board" aria-label="今日审核概览">
+        <div class="rh-board-head">
+          <span><i></i>今日审核概览</span>
+          <span class="rh-live">LIVE</span>
         </div>
-        <strong>98.6<small>%</small></strong>
-        <div class="quality-bars" aria-hidden="true">
-          <span style="height: 32%"></span><span style="height: 53%"></span><span style="height: 44%"></span><span style="height: 69%"></span><span style="height: 58%"></span><span style="height: 78%"></span><span style="height: 92%"></span>
+        <div class="rh-board-counts">
+          <div><span>待审核</span><strong data-count="pending">4</strong><small>笔</small></div>
+          <div><span>已通过</span><strong data-count="approved">1</strong><small>笔</small></div>
+          <div><span>已驳回</span><strong data-count="rejected">1</strong><small>笔</small></div>
         </div>
-        <p>较昨日提升 <span>0.8%</span></p>
-      </div>
+        <div class="rh-board-meta">
+          <div><span>平均处理时长</span><b>4m 32s</b></div>
+          <div><span>今日通过率</span><b>91.8%</b></div>
+          <div><span>SLA 内完成</span><b>97.4%</b></div>
+        </div>
+        <div class="rh-board-foot"><span data-icon="refresh"></span>队列状态每 1.8 秒自动同步</div>
+      </aside>
+    </section>
 
-      <div class="sidebar-user">
-        <span class="reviewer-avatar">林</span>
+    <section class="rh-paths" id="paths" aria-labelledby="pathsTitle">
+      <header class="rh-section-head">
         <div>
-          <strong>林清</strong>
-          <span>高级风控审核员</span>
+          <p class="rh-eyebrow"><span></span>CHOOSE A PATH</p>
+          <h2 id="pathsTitle">两条路径，按任务进入</h2>
         </div>
-        <button class="side-more" type="button" aria-label="更多账户选项" data-icon="more"></button>
-      </div>
-    </aside>
-
-    <div class="admin-workspace">
-      <header class="admin-topbar">
-        <div class="topbar-environment">
-          <span class="environment-dot"></span>
-          <span class="env-label">独立审核端口</span>
-          <span class="environment-divider">/</span>
-          <span class="env-extra">内网安全连接</span>
-        </div>
-        <div class="topbar-actions">
-          <label class="global-search">
-            <span data-icon="search"></span>
-            <input id="globalSearch" type="search" placeholder="搜索订单号 / 审核单号" autocomplete="off">
-            <kbd>⌘ K</kbd>
-          </label>
-          <button class="apply-new-case" id="newSubmittedCase" type="button" title="模拟用户从支付页提交资料">
-            <span data-icon="upload"></span>
-            <span class="utility-label">模拟新提交</span>
-          </button>
-          <button class="topbar-icon" id="notificationButton" type="button" aria-label="审核通知">
-            <span data-icon="bell"></span>
-            <i class="notification-dot"></i>
-          </button>
-          <span class="topbar-online"><i></i>审核在线</span>
-        </div>
+        <p>审核操作与历史查询分开，避免在待办队列中混入已处理记录。</p>
       </header>
 
-      <main class="admin-content">
-        <section class="admin-heading">
-          <div class="admin-heading-copy">
-            <p class="admin-eyebrow">MANUAL REVIEW · REAL-TIME QUEUE</p>
-            <h1>人工审核台</h1>
-            <p>核对本机照片与 IMEI 信息，审核通过后立即执行付款；驳回将终止本次支付流程。</p>
+      <div class="rh-path-grid">
+        <a class="rh-path rh-path--queue" href="review-queue.html">
+          <div class="rh-path-top">
+            <span class="rh-path-index">PATH 01</span>
+            <span class="rh-path-status"><i></i>待办工作中</span>
           </div>
-          <div class="admin-metrics">
-            <article class="admin-metric">
-              <span class="metric-icon metric-icon--amber" data-icon="clock"></span>
-              <div><span>待审核</span><strong id="metricPending">0<small>笔</small></strong></div>
-            </article>
-            <article class="admin-metric">
-              <span class="metric-icon metric-icon--mint" data-icon="activity"></span>
-              <div><span>平均处理时长</span><strong>4m 32s</strong></div>
-            </article>
-            <article class="admin-metric">
-              <span class="metric-icon metric-icon--ink" data-icon="shield-check"></span>
-              <div><span>今日通过率</span><strong>91.8<small>%</small></strong></div>
-            </article>
-          </div>
-        </section>
-
-        <section class="review-workbench" aria-label="人工审核工作区">
-          <aside class="queue-panel">
-            <header class="queue-header">
-              <div>
-                <div class="queue-title-line">
-                  <h2>审核队列</h2>
-                  <span class="live-tag"><i></i>实时</span>
-                </div>
-                <p>优先展示高风险与等待较久的订单</p>
+          <div class="rh-path-body">
+            <div class="rh-path-copy">
+              <span class="rh-path-icon" data-icon="inbox"></span>
+              <h3>待审核工作台</h3>
+              <p>处理进入人工审核的订单，核对本机图片与 IMEI 信息，作出通过或驳回结论。</p>
+            </div>
+            <div class="rh-queue-preview" aria-hidden="true">
+              <div class="rh-preview-head"><span>审核队列</span><span><i></i>实时</span></div>
+              <div class="rh-preview-row is-active">
+                <span class="rh-preview-risk">高风险</span>
+                <div><strong>TCB2026110949688</strong><small>图片信息与订单设备不一致</small></div>
+                <em>¥8,620.00</em>
               </div>
-              <button class="queue-refresh" id="refreshQueue" type="button" aria-label="刷新审核队列">
-                <span data-icon="refresh"></span>
-              </button>
-            </header>
-
-            <div class="queue-tabs" role="tablist" aria-label="按审核状态筛选">
-              <button class="queue-tab is-active" type="button" role="tab" aria-selected="true" data-filter="pending">
-                待审核 <span id="pendingTabCount">0</span>
-              </button>
-              <button class="queue-tab" type="button" role="tab" aria-selected="false" data-filter="approved">
-                已通过 <span id="approvedTabCount">0</span>
-              </button>
-              <button class="queue-tab" type="button" role="tab" aria-selected="false" data-filter="rejected">
-                已驳回 <span id="rejectedTabCount">0</span>
-              </button>
+              <div class="rh-preview-row">
+                <span class="rh-preview-risk">高风险</span>
+                <div><strong>TCB2026110949741</strong><small>设备环境与历史交易不一致</small></div>
+                <em>¥3,299.00</em>
+              </div>
+              <div class="rh-preview-row">
+                <span class="rh-preview-risk rh-preview-risk--medium">中风险</span>
+                <div><strong>TCB2026110949512</strong><small>IMEI 图片清晰度不足</small></div>
+                <em>¥599.00</em>
+              </div>
             </div>
+          </div>
+          <div class="rh-path-foot">
+            <div><strong><span data-count="pending">4</span> 笔</strong><span>等待人工处理</span></div>
+            <span class="rh-path-cta">进入审核工作台 <span data-icon="arrow-right"></span></span>
+          </div>
+        </a>
 
-            <label class="queue-search">
-              <span data-icon="search"></span>
-              <input id="queueSearch" type="search" placeholder="搜索队列" autocomplete="off">
-            </label>
-
-            <div class="queue-list" id="queueList" role="list" aria-live="polite"></div>
-
-            <footer class="queue-footer">
-              <span><i></i>队列状态已同步</span>
-              <button type="button" id="queueHelp">快捷键 <kbd>?</kbd></button>
-            </footer>
-          </aside>
-
-          <section class="case-panel" id="casePanel" aria-label="审核详情" aria-live="polite">
-            <div class="case-loading">
-              <span class="spinner"></span>
-              正在载入审核资料…
+        <a class="rh-path rh-path--records" href="review-records.html">
+          <div class="rh-path-top">
+            <span class="rh-path-index">PATH 02</span>
+            <span class="rh-path-status rh-path-status--quiet">只读记录</span>
+          </div>
+          <div class="rh-path-body">
+            <div class="rh-path-copy">
+              <span class="rh-path-icon" data-icon="history"></span>
+              <h3>审核记录</h3>
+              <p>查询已完成审核的订单，回顾审核结论、驳回原因、审核员与完整时间轨迹。</p>
             </div>
-          </section>
-        </section>
-      </main>
-    </div>
-  </div>
+            <div class="rh-records-preview" aria-hidden="true">
+              <div class="rh-preview-head"><span>最近记录</span><span>全部审计留痕</span></div>
+              <div class="rh-record-row">
+                <span class="rh-record-mark is-approved"><span data-icon="check"></span></span>
+                <div><strong>TCB2026110949011</strong><small>资料一致，审核通过</small></div>
+                <span class="rh-record-result">已通过</span>
+              </div>
+              <div class="rh-record-row">
+                <span class="rh-record-mark is-rejected"><span data-icon="x"></span></span>
+                <div><strong>TCB2026110948809</strong><small>IMEI 信息不完整</small></div>
+                <span class="rh-record-result is-rejected">已驳回</span>
+              </div>
+              <div class="rh-record-row">
+                <span class="rh-record-mark is-approved"><span data-icon="check"></span></span>
+                <div><strong>TCB2026110948721</strong><small>资料一致，审核通过</small></div>
+                <span class="rh-record-result">已通过</span>
+              </div>
+            </div>
+          </div>
+          <div class="rh-path-foot">
+            <div><strong><span data-record-total>2</span> 条</strong><span>完整审核记录</span></div>
+            <span class="rh-path-cta">查看审核记录 <span data-icon="arrow-right"></span></span>
+          </div>
+        </a>
+      </div>
+    </section>
 
-  <dialog class="admin-dialog" id="decisionDialog" aria-labelledby="decisionDialogTitle">
-    <div class="admin-dialog-body">
-      <div class="dialog-icon" id="decisionDialogIcon"><span data-icon="check"></span></div>
-      <p class="dialog-eyebrow" id="decisionDialogEyebrow">APPROVE &amp; PAY</p>
-      <h2 id="decisionDialogTitle">确认审核通过？</h2>
-      <p class="dialog-lead" id="decisionDialogLead">通过后将立即执行付款，此操作无法撤销。</p>
-      <div class="dialog-order-summary">
-        <div><span>订单号</span><strong id="dialogOrderNo">TCB2026110949852</strong></div>
-        <div><span>支付金额</span><strong id="dialogAmount">¥1,683.00</strong></div>
-      </div>
-      <div class="dialog-reason is-hidden" id="dialogRejectReason">
-        <span>驳回原因</span>
-        <strong>—</strong>
-      </div>
-      <label class="dialog-field">
-        <span>审核备注 <em>选填</em></span>
-        <textarea id="reviewerNote" rows="3" placeholder="补充说明审核判断，仅内部可见"></textarea>
-      </label>
-      <div class="admin-dialog-actions">
-        <button class="admin-btn admin-btn--secondary" type="button" id="cancelDecision">取消</button>
-        <button class="admin-btn admin-btn--primary" type="button" id="confirmDecision">确认通过并付款</button>
-      </div>
-    </div>
-  </dialog>
+    <section class="rh-principles" aria-label="审核端能力">
+      <article><span data-icon="shield-lock"></span><div><strong>资料加密展示</strong><p>原图仅在审核端口内查看，并保留访问留痕。</p></div></article>
+      <article><span data-icon="refresh"></span><div><strong>结果即时回写</strong><p>审核通过立即付款，驳回同步终止本次支付。</p></div></article>
+      <article><span data-icon="file-text"></span><div><strong>全程可追溯</strong><p>结论、原因、审核员与时间均进入审核记录。</p></div></article>
+    </section>
+  </main>
 
-  <dialog class="image-dialog" id="imageDialog" aria-labelledby="imageDialogTitle">
-    <header class="image-dialog-header">
-      <div>
-        <p>EVIDENCE ORIGINAL</p>
-        <h2 id="imageDialogTitle">本机图片</h2>
-      </div>
-      <div class="image-dialog-tools">
-        <span id="imageDimensions">原始画质 · 已加密</span>
-        <button type="button" id="closeImageDialog" aria-label="关闭原图">
-          <span data-icon="x"></span>
-        </button>
-      </div>
-    </header>
-    <div class="image-dialog-stage">
-      <img id="imageDialogImage" alt="核验资料原图">
-    </div>
-    <footer class="image-dialog-footer">
-      <div><i></i>审核资料仅限本次核验使用，请勿截屏外传</div>
-      <button type="button" id="approveFromImage">通过并付款</button>
-    </footer>
-  </dialog>
-
-  <div class="admin-toast" id="adminToast" role="status" aria-live="polite"></div>
+  <footer class="rh-footer">
+    <div><span data-icon="lock"></span>独立审核端口 · 内网安全连接</div>
+    <div><span>用户名：林清</span><span class="rh-footer-sep"></span><a href="index.html">演示入口 <span data-icon="external"></span></a></div>
+  </footer>
 
   <script src="assets/icons.js"></script>
   <script src="assets/store.js"></script>
-  <script src="assets/admin.js"></script>
+  <script src="assets/review-home.js"></script>
 </body>
 </html>

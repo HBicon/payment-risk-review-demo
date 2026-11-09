@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b2b26">
+  <title>审核记录 · 收款风控</title>
+  <link rel="stylesheet" href="assets/styles.css">
+  <link rel="stylesheet" href="assets/records.css">
+</head>
+<body class="admin-page records-page">
+  <div class="admin-shell">
+    <aside class="admin-sidebar">
+      <a class="admin-brand" href="review.html" aria-label="返回审核中心">
+        <span class="brand-symbol" data-icon="shield-check"></span>
+        <span class="brand-copy">
+          <strong>收款风控</strong>
+          <small>TRUST REVIEW</small>
+        </span>
+      </a>
+
+      <div class="port-badge">
+        <span class="port-live-dot"></span>
+        独立审核端口
+      </div>
+
+      <nav class="side-nav" aria-label="主导航">
+        <p class="side-label">审核工作台</p>
+        <a class="side-link" href="review-queue.html">
+          <span class="side-link-icon" data-icon="inbox"></span>
+          <span>人工审核</span>
+          <span class="side-count" id="sidePendingCount">0</span>
+        </a>
+        <button class="side-link" type="button" data-nav="risk">
+          <span class="side-link-icon" data-icon="alert-triangle"></span>
+          <span>风险订单</span>
+          <span class="nav-dot"></span>
+        </button>
+        <a class="side-link is-active" href="review-records.html" aria-current="page">
+          <span class="side-link-icon" data-icon="history"></span>
+          <span>审核记录</span>
+        </a>
+
+        <p class="side-label side-label--spaced">策略与管理</p>
+        <button class="side-link" type="button" data-nav="rules">
+          <span class="side-link-icon" data-icon="sliders"></span>
+          <span>风控规则</span>
+        </button>
+        <button class="side-link" type="button" data-nav="team">
+          <span class="side-link-icon" data-icon="users"></span>
+          <span>审核团队</span>
+        </button>
+      </nav>
+
+      <div class="side-quality">
+        <div class="quality-head">
+          <span>今日审核质量</span>
+          <span data-icon="activity"></span>
+        </div>
+        <strong>98.6<small>%</small></strong>
+        <div class="quality-bars" aria-hidden="true">
+          <span style="height: 32%"></span><span style="height: 53%"></span><span style="height: 44%"></span><span style="height: 69%"></span><span style="height: 58%"></span><span style="height: 78%"></span><span style="height: 92%"></span>
+        </div>
+        <p>较昨日提升 <span>0.8%</span></p>
+      </div>
+
+      <div class="sidebar-user">
+        <span class="reviewer-avatar">林</span>
+        <div><strong>林清</strong><span>高级风控审核员</span></div>
+        <button class="side-more" type="button" aria-label="更多账户选项" data-icon="more"></button>
+      </div>
+    </aside>
+
+    <div class="admin-workspace">
+      <header class="admin-topbar">
+        <div class="topbar-environment">
+          <span class="environment-dot"></span>
+          <span class="env-label">审核中心</span>
+          <span class="environment-divider">/</span>
+          <span class="env-extra">审核记录</span>
+        </div>
+        <div class="topbar-actions">
+          <label class="global-search records-global-search">
+            <span data-icon="search"></span>
+            <input id="globalSearch" type="search" placeholder="搜索审核单 / 订单号" autocomplete="off">
+            <kbd>⌘ K</kbd>
+          </label>
+          <a class="records-topbar-link" href="review-queue.html"><span data-icon="inbox"></span>待审核工作台</a>
+          <a class="topbar-icon records-topbar-back" href="review.html" aria-label="返回审核中心"><span data-icon="arrow-left"></span></a>
+        </div>
+      </header>
+
+      <main class="admin-content records-content">
+        <section class="records-heading">
+          <div class="records-heading-copy">
+            <p class="admin-eyebrow">REVIEW HISTORY · AUDIT TRAIL</p>
+            <h1>审核记录</h1>
+            <p>查询已处理的审核单，回看审核结论、驳回原因与完整处理轨迹。</p>
+          </div>
+          <div class="records-heading-actions">
+            <a class="records-outline-btn" href="review.html"><span data-icon="arrow-left"></span>审核中心</a>
+            <button class="records-outline-btn" id="exportRecords" type="button"><span data-icon="download"></span>导出记录</button>
+          </div>
+        </section>
+
+        <section class="records-metrics" aria-label="审核记录概览">
+          <article class="record-metric record-metric--all">
+            <span class="record-metric-icon" data-icon="history"></span>
+            <div><span>历史记录</span><strong id="metricAll">0<small>条</small></strong></div>
+          </article>
+          <article class="record-metric record-metric--approved">
+            <span class="record-metric-icon" data-icon="check-circle"></span>
+            <div><span>已通过</span><strong id="metricApproved">0<small>条</small></strong></div>
+          </article>
+          <article class="record-metric record-metric--rejected">
+            <span class="record-metric-icon" data-icon="x-circle"></span>
+            <div><span>已驳回</span><strong id="metricRejected">0<small>条</small></strong></div>
+          </article>
+          <article class="record-metric record-metric--rate">
+            <span class="record-metric-icon" data-icon="activity"></span>
+            <div><span>审核通过率</span><strong id="metricRate">0<small>%</small></strong></div>
+          </article>
+        </section>
+
+        <section class="records-panel" aria-label="审核记录列表">
+          <header class="records-panel-head">
+            <div class="records-tabs" role="tablist" aria-label="按审核结果筛选">
+              <button class="records-tab is-active" type="button" role="tab" aria-selected="true" data-filter="all">全部记录 <span id="allTabCount">0</span></button>
+              <button class="records-tab" type="button" role="tab" aria-selected="false" data-filter="approved">已通过 <span id="approvedTabCount">0</span></button>
+              <button class="records-tab" type="button" role="tab" aria-selected="false" data-filter="rejected">已驳回 <span id="rejectedTabCount">0</span></button>
+            </div>
+            <div class="records-toolbar">
+              <label class="records-search">
+                <span data-icon="search"></span>
+                <input id="recordSearch" type="search" placeholder="搜索订单号、审核单号或审核员" autocomplete="off">
+              </label>
+              <button class="records-filter-button" id="refreshRecords" type="button" aria-label="刷新审核记录" title="刷新记录"><span data-icon="refresh"></span></button>
+            </div>
+          </header>
+
+          <div class="records-table-wrap">
+            <table class="records-table">
+              <thead>
+                <tr>
+                  <th>审核单 / 订单号</th>
+                  <th>审核结论</th>
+                  <th>订单金额</th>
+                  <th>审核员</th>
+                  <th>审核时间</th>
+                  <th><span class="sr-only">操作</span></th>
+                </tr>
+              </thead>
+              <tbody id="recordsBody"></tbody>
+            </table>
+          </div>
+
+          <footer class="records-panel-foot">
+            <span><i></i>记录数据已同步</span>
+            <span>共 <strong id="recordTotalFoot">0</strong> 条 · 全部完成审核</span>
+          </footer>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <dialog class="record-dialog" id="recordDialog" aria-labelledby="recordDialogTitle">
+    <div class="record-dialog-top">
+      <div>
+        <p>REVIEW RECORD</p>
+        <h2 id="recordDialogTitle">审核单详情</h2>
+      </div>
+      <button type="button" id="closeRecordDialog" aria-label="关闭审核记录"><span data-icon="x"></span></button>
+    </div>
+    <div class="record-dialog-body" id="recordDialogBody"></div>
+    <footer class="record-dialog-foot">
+      <span><span data-icon="lock"></span>只读记录 · 不可修改审核结论</span>
+      <button type="button" id="closeRecordButton">关闭</button>
+    </footer>
+  </dialog>
+
+  <div class="admin-toast" id="recordsToast" role="status" aria-live="polite"></div>
+
+  <script src="assets/icons.js"></script>
+  <script src="assets/store.js"></script>
+  <script src="assets/records.js"></script>
+</body>
+</html>
